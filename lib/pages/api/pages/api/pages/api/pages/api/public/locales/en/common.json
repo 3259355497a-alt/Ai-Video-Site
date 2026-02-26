@@ -1,0 +1,55 @@
+{
+  "site_title": "AI Video Generator",
+  "tagline": "Turn photos into stunning videos with AI",
+  "credits": "Credits",
+  "free_trial": "Free trial: 1 credit",
+  "out_of_credits": "Out of credits? Buy more",
+  "photo_to_video": "Photo to Video",
+  "text_to_video": "Text to Video",
+  "upload_image": "Upload Image",
+  "enter_prompt": "Enter your prompt",
+  "generate": "Generate Video",
+  "generating": "Generating...",
+  "buy_now": "Buy Now",
+  "pricing": {
+    "title": "Simple, Transparent Pricing",
+    "starter": {
+      "name": "Starter",
+      "price": "$9.99",
+      "credits": "10 credits",
+      "description": "Try it out"
+    },
+    "popular": {
+      "name": "Popular",
+      "price": "$19.99",
+      "credits": "25 credits (+5 bonus)",
+      "description": "Best value",
+      "badge": "MOST POPULAR"
+    },
+    "pro": {
+      "name": "Pro",
+      "price": "$49.99",
+      "credits": "70 credits (+20 bonus)",
+      "description": "For creators"
+    },
+    "max": {
+      "name": "Max",
+      "price": "$99.99",
+      "credits": "150 credits (+50 bonus)",
+      "description": "Unlimited creativity"
+    }
+  },
+  "refund_policy": {
+    "title": "Refund Policy",
+    "trial": "🎁 Free trial: 1 credit for new users (one-time only)",
+    "unused": "✅ Unused credits: Full refund within 7 days",
+    "used": "❌ Used credits: Non-refundable",
+    "failed": "🔄 Failed generations: Auto retry, no credit deducted",
+    "note": "*Refunds are processed within 3-5 business days"
+  },
+  "footer": {
+    "credits": "Credits never expire",
+    "payment": "Secure payment",
+    "support": "24/7 support"
+  }
+}
