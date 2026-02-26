@@ -1,96 +1,95 @@
-"use client"
-
-import { Check, Zap } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { useLanguage } from "@/lib/i18n"
-
-interface PricingPlan {
-  nameKey: string
-  price: string
-  credits: number
-  bonus?: number
-  popular?: boolean
-}
-
-const plans: PricingPlan[] = [
-  { nameKey: "pricing.starter", price: "$9.99", credits: 10 },
-  { nameKey: "pricing.popular", price: "$19.99", credits: 25, bonus: 5, popular: true },
-  { nameKey: "pricing.pro", price: "$49.99", credits: 70, bonus: 20 },
-  { nameKey: "pricing.max", price: "$99.99", credits: 150, bonus: 50 },
-]
-
 export function PricingSection() {
-  const { t } = useLanguage()
+  const { t } = useTranslation();
+
+  const plans = [
+    {
+      name: 'Starter',
+      price: '$9.99',
+      credits: '10',
+      bonus: '0',
+      popular: false
+    },
+    {
+      name: 'Popular',
+      price: '$19.99',
+      credits: '25',
+      bonus: '5',
+      popular: true
+    },
+    {
+      name: 'Pro',
+      price: '$49.99',
+      credits: '70',
+      bonus: '20',
+      popular: false
+    },
+    {
+      name: 'Max',
+      price: '$99.99',
+      credits: '150',
+      bonus: '50',
+      popular: false
+    }
+  ];
+
+  const links = {
+    'Starter': 'https://john-ai.lemonsqueezy.com/checkout/buy/854047',
+    'Popular': 'https://john-ai.lemonsqueezy.com/checkout/buy/854049',
+    'Pro': 'https://john-ai.lemonsqueezy.com/checkout/buy/855051',
+    'Max': 'https://john-ai.lemonsqueezy.com/checkout/buy/854052'
+  };
 
   return (
-    <section id="pricing" className="border-t border-border bg-secondary/30 py-16">
-      <div className="mx-auto max-w-6xl px-4 lg:px-6">
-        <div className="mb-10 text-center">
-          <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl" style={{ fontFamily: "var(--font-heading)" }}>
-            {t("pricing.title")}
-          </h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            {t("pricing.subtitle")}
-          </p>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <section className="py-16 bg-black">
+      <div className="container mx-auto px-4">
+        <h2 className="text-4xl font-bold text-center text-white mb-12">
+          {t('pricing.title')}
+        </h2>
+        <div className="grid md:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {plans.map((plan) => (
             <div
-              key={plan.nameKey}
-              className={`relative flex flex-col rounded-2xl border p-6 transition-all hover:border-primary/50 ${
+              key={plan.name}
+              className={`rounded-2xl p-6 ${
                 plan.popular
-                  ? "border-primary bg-primary/5 shadow-[0_0_30px_-5px] shadow-primary/20"
-                  : "border-border bg-card"
+                  ? 'bg-purple-600 border-2 border-purple-400 relative'
+                  : 'bg-gray-900 border border-gray-800'
               }`}
             >
               {plan.popular && (
-                <Badge className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-3 text-xs">
-                  <Zap className="mr-1 size-3" />
-                  POPULAR
-                </Badge>
+                <div className="absolute -top-3 right-4 bg-purple-400 text-black text-sm px-3 py-1 rounded-full">
+                  {t('pricing.popular.badge')}
+                </div>
               )}
-
-              <div className="mb-4">
-                <h3 className="text-sm font-semibold text-foreground">{t(plan.nameKey)}</h3>
-                <div className="mt-2 flex items-baseline gap-1">
-                  <span className="text-3xl font-bold tracking-tight text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
-                    {plan.price}
-                  </span>
-                </div>
+              <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
+              <div className="mt-2 flex items-baseline gap-1">
+                <span className="text-3xl font-bold text-white">
+                  {plan.price}
+                </span>
               </div>
-
               <div className="mb-6 flex flex-col gap-2">
-                <div className="flex items-center gap-2 text-sm text-foreground">
-                  <Check className="size-4 text-primary" />
-                  <span>
-                    {plan.credits} {t("pricing.credits")}
-                  </span>
+                <div className="flex items-center gap-2 text-sm text-gray-300">
+                  <span>{plan.credits} {t('pricing.credits')}</span>
                 </div>
-                {plan.bonus && (
-                  <div className="flex items-center gap-2 text-sm text-success">
-                    <Check className="size-4" />
-                    <span>
-                      +{plan.bonus} {t("pricing.bonus")}
-                    </span>
+                {plan.bonus !== '0' && (
+                  <div className="flex items-center gap-2 text-sm text-green-400">
+                    <span>+{plan.bonus} {t('pricing.bonus')}</span>
                   </div>
                 )}
               </div>
-
-              <Button
-                className={`mt-auto w-full font-medium ${
+              <button
+                onClick={() => window.open(links[plan.name], '_blank')}
+                className={`w-full py-3 rounded-lg font-semibold transition ${
                   plan.popular
-                    ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border"
+                    ? 'bg-white text-purple-600 hover:bg-gray-100'
+                    : 'bg-purple-600 text-white hover:bg-purple-700'
                 }`}
               >
-                {t("pricing.buy")}
-              </Button>
+                {t('pricing.buy')}
+              </button>
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
