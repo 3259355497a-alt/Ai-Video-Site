@@ -17,7 +17,7 @@ export function SiteHeader() {
               <Video className="size-4 text-primary-foreground" />
             </div>
             <span className="text-lg font-bold tracking-tight text-foreground" style={{ fontFamily: "var(--font-heading)" }}>
-              VidAI
+              JohnSAI video
             </span>
           </a>
           <nav className="hidden items-center gap-4 md:flex">
